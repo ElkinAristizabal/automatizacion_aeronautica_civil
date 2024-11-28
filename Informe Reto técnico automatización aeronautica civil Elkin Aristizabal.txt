@@ -1,0 +1,28 @@
+Informe Reto técnico automatización aeronáutica civil Elkin Aristizabal
+
+1. Principales pasos realizados:
+- Se crea el proyecto, se configura el build.gradle y se agregan dependencias y librerías a utilizar
+- Se configuró el proyecto, se hizo un task en el build.gradle de manera que se pueda setear la ruta de descarga del driver dentro del proyecto en el serenity.config de manera
+dinámica.
+- Se crean las configuraciones en el serenity.conf
+- Se crea el feature, el runner y los stepsdefinitions según ScreenPlay
+- Se crea el task a utilizar
+- Se crea el folder utils para manejar la validación de descarga y limpiar folder de descarga en un @After después de hacer validaciones.
+- Se crea la question que va a resolver el actor.
+- Se ejecuta el robot y se valida correcta ejecución y validación de escenario de prueba.
+
+2. Enlace al repositorio en GITHUB:
+
+https://github.com/ElkinAristizabal/automatizacion_aeronautica_civil
+
+3. Lista de comandos Git Utilizados para subir el código:
+
+git init 
+git remote add origin https://github.com/ElkinAristizabal/automatizacion_aeronautica_civil.git
+branch -M main
+git remote set-url origin https://ElkinAristizabal:[tokenGenerado]@github.com/ElkinAristizabal/automatizacion_aeronautica_civil.git
+git add .
+git commit -m "Se sube el reto tecnico"
+git push -u origin main   
+
+
