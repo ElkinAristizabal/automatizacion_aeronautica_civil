@@ -27,17 +27,17 @@ public class DescargarPDFAeronauticaCivilStepDefinitions {
         theActorCalled(actor);
     }
 
-    @Dado("que el usuario esta en la pagina principal de personas")
-    public void queElUsuarioEstaEnLaPaginaPrincipalDePersonas() {
+    @Dado("que el usuario esta en la pagina principal de Aeronautica civil")
+    public void queElUsuarioEstaEnLaPaginaPrincipalDeAeronauticaCivil() {
         theActorCalled(actor).attemptsTo(AbrirPaginaWeb.paraComenzarEscenario());
     }
-    @Cuando("el usuario navega hasta tasas y tarifas")
-    public void elUsuarioNavegaHastaTasasYTarifas() {
+    @Cuando("el usuario navega hasta el pdf solicitado")
+    public void elUsuarioNavegaHastaElPDFSolicitado() {
         theActorCalled(actor).attemptsTo(NavegarAPDF.paraDescargar());
     }
 
-    @Entonces("valido que se pueda descargar correctamente el pdf de prohibiciones")
-    public void validoQueSePuedaDescargarCorrectamenteElPdfDeProhibiciones() {
+    @Entonces("valido que se pueda descargar correctamente el pdf de Presentación a la Ciudadania")
+    public void validoQueSePuedaDescargarCorrectamenteElPdfDePresentacionALaCiudadania() {
         theActorCalled(actor).should(
                 seeThat(
                         DescargaPDF.enLocal(), equalTo(true)
