@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = 11
+
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    serenityVersion = '4.1.20'
+    serenityCucumberVersion = '4.1.20'
+
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation "net.serenity-bdd:serenity-core:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-junit:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay-webdriver:$rootProject.ext.serenityVersion"
+    implementation "net.serenity-bdd:serenity-cucumber:$rootProject.ext.serenityCucumberVersion"
+}
+
+tasks.register('updateConfigFile') {
+    doLast {
+        def projectDir = file(projectDir).canonicalPath
+        def espaciador = "\\\\\\\\"
+        def formattedProjectDir = projectDir.replace("\\", espaciador)
+        def filesDir = "${formattedProjectDir}${espaciador}src${espaciador}test${espaciador}resources${espaciador}folderDescarga"
+        def configFile = file("${formattedProjectDir}${espaciador}src${espaciador}test${espaciador}resources${espaciador}serenity.conf")
+
+        def configContent = configFile.text
+
+
+        def updatedConfig = configContent.replaceFirst(/download.default_directory\s*=\s*\"[^\"]*\"/, "download.default_directory = \"$filesDir\"")
+
+        configFile.write(updatedConfig)
+    }
+}
+
+compileJava.dependsOn updateConfigFile
+
+test {
+    systemProperty "cucumber.options", System.getProperty("cucumber.options")
+}
